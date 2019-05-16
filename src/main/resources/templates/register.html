@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#getCode").click(function(){
+                var myEmail = $("#myEmail").val();
+                $.post("/w/getVerificationCode?toEmail="+myEmail+"&typeCode=1",function(data){
+                    $("#bCode").val(data.code);
+                },"JSON");
+            });
+            $("#vcode").blur(function(){
+                debugger;
+                var bCode = $("#bCode").val();
+                if($("#vcode").val() == bCode){
+                    $("#myForm").submit();
+                }else{
+                    alert("验证失败");
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+<form action="/w/register" id="myForm" method="post">
+    <input type="hidden" id="bCode" value="">
+    用户名：<input type="text" name="username"/><br>
+    密码：<input type="password" name="password" /><br>
+    性别：<input type="radio" name="sex" value="1">男<input type="radio" name="sex" value="0"/>女<br>
+    邮箱：<input type="text" name="email" id="myEmail" value="1339667689@qq.com"><br>
+    验证码：<input type="text" name="vercode" id="vcode"><input type="button" id="getCode"  value="获取验证码"/><br>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#getCode").click(function(){
+            var myEmail=$("#myEmail").val();
+            $.post("/w/getVerificationCode?toEmail="+myEmail+"&typeCode=0")
+            alert("邮件已发送，请等待接收");
+        });
+    })
+</script>
+</head>
+<body>
+请输入账号绑定邮箱：<input type="text" name="email" id="myEmail" value="1339667689@qq.com"/>
+&nbsp;&nbsp;<button id="getCode">获取验证码</button>
+</body>
+</html>
