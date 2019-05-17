@@ -10,7 +10,7 @@ public class VerificationCodeUtils {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < 4; i++) {
 			Random random = new Random();
-			int number = random.nextInt(az.length)-1;
+			int number = random.nextInt(az.length-1);
 			builder.append(az[number]);
 		}
 		return builder.toString();
